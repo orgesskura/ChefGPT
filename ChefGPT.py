@@ -19,6 +19,7 @@ class ChefGPT:
         chef=DEFAULT_CHEF,
     ):
         self.client = OpenAI()
+        self.model = model
         self.prompts = [
             {
                 "role": "system",
@@ -32,13 +33,6 @@ class ChefGPT:
                     "content": scenario,
                 }
             )
-        self.prompts.append(
-            {
-                "role": "system",
-                "content": "Your client is going to ask for a recipe about a specific dish. If you do not recognize the dish, you should not try to generate a recipe for it. Do not answer with a recipe if you do not understand the name of the dish. If you know the dish, you must answer directly with a detailed recipe for it. If you don't know the dish, you should tell the client that you don't know the dish and end the conversation.",
-            }
-        )
-        self.model = model
 
     def query(self, text):
         self.prompts.append({"role": "user", "content": text})
