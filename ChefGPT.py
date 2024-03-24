@@ -14,12 +14,14 @@ DEFAULT_SCENARIOS = [
 class ChefGPT:
     def __init__(
         self,
+        name,
         model=DEFAULT_MODEL,
         scenarios=DEFAULT_SCENARIOS,
         chef=DEFAULT_CHEF,
     ):
         self.client = OpenAI()
         self.model = model
+        self.name = name
         self.prompts = [
             {
                 "role": "system",
